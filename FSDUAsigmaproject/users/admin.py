@@ -6,7 +6,7 @@ from django.contrib.auth.admin import UserAdmin
 from .models import CustomUser
 
 
-from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.admin import UserAdmin    
 
 UserAdmin.fieldsets += ('FSDU specific field', {'fields': ('phone_number',)}),
 
