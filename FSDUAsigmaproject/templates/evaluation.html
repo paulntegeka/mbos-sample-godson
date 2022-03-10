@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<main id="main">
+
+  <!-- ======= Breadcrumbs ======= -->
+  <section class="breadcrumbs" style="background-color: #E0E3EA;">
+    <div class="container" style="background-color: #E0E3EA;color:blue;">
+      <div class="row">
+        <div class="col-md-6">
+          <h2>
+            Godson Group
+          </h2>
+
+        </div>
+        <div class="col-md-6 text-right d-none d-sm-block">
+          <img class="img-responsive" style="height: 60px; width:auto;" src="" />
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- End Breadcrumbs -->
+
+  <div class="container-fluid">
+
+    {% if user.is_authenticated %}
+    {% if user.is_staff %}
+
+    <style>
+      .embed-container {
+        position: relative;
+        padding-bottom: 87.25%;
+        height: 0;
+        overflow: hidden;
+        max-width: 100%;
+      }
+
+      .embed-container iframe,
+      .embed-container object,
+      .embed-container embed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+    <!-- <div class='embed-container' style="border:2px solid #666; border-radius:11px;"><iframe width='100%' height='100%'
+        src="https://datastudio.google.com/embed/reporting/a627d088-87d6-4186-a60d-0fc3c405d38e/page/4VDGB"
+        frameborder='0' style='border:0' allowfullscreen></iframe></div> -->
+    <div class="container">
+      <iframe title="sample-godson-report" width="100%" height="800"
+        src="https://app.powerbi.com/view?r=eyJrIjoiODdjMjljYzAtMThhOS00MDEzLThkYmMtZjQ0YzBlZGNiMzRjIiwidCI6IjIxYWZkOGQ3LTViN2EtNGExOS1hOWI3LWY1MWEwZjRlNTU3NCJ9&pageName=ReportSection"
+        frameborder="0" allowFullScreen="true"></iframe>
+    </div>
+    </iframe>
+
+    {% else %}
+    <h3>Not allowed to access this page</h3>
+    {% endif %}
+    {% endif %}
+
+  </div>
+
+</main><!-- End #main -->
+
+
+{% endblock content %}

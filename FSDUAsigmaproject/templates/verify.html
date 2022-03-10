@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+
+{% load crispy_forms_tags %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% block content %}
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <h2>Log In</h2>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <section id="blog" class="blog">
+        <div class="container" data-aos="fade-up">
+  
+          <div class="row">
+  
+            <div class="col-lg-8 entries">
+  
+              <div class="blog-author ">
+                <div class="row gy-4">
+
+            <form action="" method="POST" autocomplete="off">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-primary">
+                    Verify
+                </button>
+            </form>
+        </div>
+    </div><!-- End blog author bio -->
+
+
+  </div><!-- End blog entries list -->
+
+
+</div>
+
+</div>
+</section><!-- End Blog Single Section -->      
+
+  </main><!-- End #main -->
+
+{% endblock content %}

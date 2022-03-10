@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <h2>Navigation error ...</h2>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong>{{ message }}</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <section id="blog" class="blog">
+        <div class="container" data-aos="fade-up">
+  
+          <h1>404 Error</h1>
+
+        </div>
+    </section><!-- End Blog Single Section -->      
+
+  </main><!-- End #main -->
+
+{% endblock content %}

@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% load humanize %}
+
+
+{% block content %}
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <h2>Data Submission</h2>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong>{{ message }}</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <section id="blog" class="blog">
+        <div class="container" data-aos="fade-up">
+  
+          <div class="row">
+          <div class="col-lg-7 entries">
+              <div class="blog-author ">
+                <div class="row gy-4">
+
+                {% if user.Lenders.active_lender == True %}
+                <form method="post" enctype="multipart/form-data">
+                  <label>Upload disbursements spreadsheet</label>
+                  <br>
+                  <ul>
+                    <input style="display:inline;" type="file" class="btn btn-secondary btn-sm" name="myfile"/> 
+                    <a type="button" class="btn btn-secondary" href="{% url 'download-template' %}">Download template</a>
+                  </ul>
+
+                  {% csrf_token %}
+                  {{ form|crispy }}
+                  <input type="submit" class="btn btn-primary" value="Submit"/>
+                </form>
+                {% else %}
+                  <h2>Your institution account has been suspended !</h2><br>
+                  <p>Please contact Daniel mutumba (daniel.mutumba@asigmacapital.com) for assitance</p>
+                {% endif %}
+                </div>
+              </div><!-- End blog author bio -->
+          </div><!-- End blog entries list -->
+
+          <div class="col-lg-5">
+            <h6> Data dictionary of the columns in the spreadsheet template to be upload</h6>
+            <div class="list-group">
+              <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">NIN</h5>
+                  <small>Required</small>
+                </div>
+                <p class="mb-1">This is the National ID Number for the borrower.</p>
+                <small>Example: CM1234578VUE</small>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Phone Number</h5>
+                  <small class="text-muted">Required</small>
+                </div>
+                <p class="mb-1">This is the phone number of Borrower.</p>
+                <small class="text-muted">Example: 0789076068</small>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Borrower ID</h5>
+                  <small class="text-muted">Required</small>
+                </div>
+                <p class="mb-1">This is the Borrower Id of the borrower as captured your own internal systems.</p>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Line of business</h5>
+                  <small class="text-muted">Required</small>
+                </div>
+                <p class="mb-1">This is a character descibing the borrowers line of business.</p>
+                <small class="text-muted">Example: Agriculture, Manufacturing </small>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Gender</h5>
+                  <small class="text-muted">Required</small>
+                </div>
+                <p class="mb-1">This is the gender of the borrower.</p>
+                <small class="text-muted">Example: Male for Male borrowers, Female for Female borrowers </small>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Age</h5>
+                  <small class="text-muted">Required</small>
+                </div>
+                <p class="mb-1">This is the age of the borrower at the time of loan issue.</p>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Year of loan Issue</h5>
+                  <small class="text-muted">Required</small>
+                </div>
+                <p class="mb-1">This is the year when the loan was issued to the borrower</p>
+                <small class="text-muted">Example: 2022 </small>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Month of loan Issue</h5>
+                  <small class="text-muted">Required</small>
+                </div>
+                <p class="mb-1">This is the Month when the loan was issued to the borrower </p>
+                <small class="text-muted">Example: 01 for the month of January </small>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Day of loan Issue</h5>
+                  <small class="text-muted">Required</small>
+                </div>
+                <p class="mb-1">This is the day when the loan was issued to the borrower</p>
+                <small class="text-muted">Example: 01 for the month of January </small>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">loan amount</h5>
+                  <small class="text-muted">Required</small>
+                </div>
+                <p class="mb-1">This is the amount lent to the borrower in Uganda shillings</p>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Tenure of loan</h5>
+                  <small class="text-muted">Required</small>
+                </div>
+                <p class="mb-1">This is the expected payback period of the loan in months</p>
+                <small class="text-muted">Example: 6 to mean 6 months</small>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Interest rate of loan</h5>
+                  <small class="text-muted">Required</small>
+                </div>
+                <p class="mb-1">This is the precentage interest rate of the loan</p>
+                <small class="text-muted">Example: 11.5 to mean 11.5 percent per annum</small>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Annual revenue of borrower</h5>
+                  <small class="text-muted">Required</small>
+                </div>
+                <p class="mb-1">This is the total revenue that a borrower's business makes per accounting period</p>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Location of borrower</h5>
+                  <small class="text-muted">Required</small>
+                </div>
+                <p class="mb-1">District in which the business for which the borrower is taking money is located</p>
+                <small class="text-muted">Example: 11.5 to mean 11.5 percent per annum</small>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-00 justify-content-between">
+                  <h5 class="mb-1">Expected monthly installment</h5>
+                  <small class="text-muted">Required</small>
+                </div>
+                <p class="mb-6">This is the equal monthly installment that the borrower is expected to make every month for the duration of the loan term</p>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Number of employees</h5>
+                  <small class="text-muted">Required</small>
+                </div>
+                <p class="mb-6">Number of individulas that the borrower's business employs</p>
+              </a>
+            </div>
+          </div>
+          </div>
+
+        </div>
+    </section><!-- End Blog Single Section -->      
+
+  </main><!-- End #main -->
+
+
+
+{% endblock content %}
